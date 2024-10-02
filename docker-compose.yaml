@@ -2,14 +2,28 @@ version: '3'
 
 services:
   db:
-    image:
+    image: mongo:latest
     environment:
+      MONGO_USERNAME: stats_user
+      MONGO_PASSWORD: stats_password
+      MONGO_DATABASE: stats_db
     ports:
+      - "27017:27017"
     volumes:
+      - mongo_data:/data/db
+
   app:
-      build: .
-      environment:
-      ports:
-      depends_on:
+    build: .
+    environment:
+      DB_HOST: db
+      DB_USER: stats_user
+      DB_PASSWORD: stats_password
+      DB_NAME: stats_db
+      DB_PORT: 27017
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
 volumes:
-  postgres_data:
+  mongo_data:

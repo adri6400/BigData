@@ -11,7 +11,8 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copier le code de l'application dans le conteneur
-COPY app.py .
+COPY . .
 
 # Définir la commande à exécuter lorsque le conteneur démarre
-CMD [ "python3", "app.py" ]
+CMD ["streamlit", "run", "app.py"]
+
