@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 st.set_page_config(layout="wide")
 
 # CSS personnalisé pour styliser le menu
-custom_css = """
+custom_css = """  
     <style>
     /* Changer la couleur de fond de la barre de navigation */
     .css-18e3th9 {  
