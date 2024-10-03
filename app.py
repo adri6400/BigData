@@ -1,5 +1,5 @@
 
-import api_spotify
+import utils.api_spotify as api_spotify
 
 import streamlit as st
 import pandas as pd
@@ -9,10 +9,10 @@ import matplotlib.pyplot as plt
 st.set_page_config(layout="wide")
 
 # CSS personnalisé pour styliser le menu
-custom_css = """
+custom_css = """  
     <style>
     /* Changer la couleur de fond de la barre de navigation */
-    .css-18e3th9 {
+    .css-18e3th9 {  
         background-color: #4CAF50;  /* Couleur de fond du menu */
         color: red;  /* Couleur du texte */
     }
@@ -85,11 +85,11 @@ st.write('Plus de ', len(df) , 'musiques sur notre site')
 # st.image(image_path, caption='Ceci est un exemple d\'image', use_column_width=True)
 
 image_paths = [
-    "./aa.jpeg",  
-    "./aa.jpeg",  
-    "./aa.jpeg",  
-    "./aa.jpeg",  
-    "./aa.jpeg",  
+    "./img/aa.jpeg",  
+    "./img/aa.jpeg",  
+    "./img/aa.jpeg",  
+    "./img/aa.jpeg",  
+    "./img/aa.jpeg",  
 ]
 
 # Affichage des images dans des colonnes

@@ -1,8 +1,12 @@
-
-
 import requests
-client_id = "d93d4a8bdb184e898082ab907dc313b4"
-client_secret = "1c72f524f0e24c2787c945e9c3f5df54"
+import os
+#se connecter au bon ficheir .env
+from dotenv import load_dotenv
+load_dotenv()
+client_id = os.environ.get('CLIENT_ID')
+client_secret = os.environ.get('CLIENT_SECRET')
+print(client_id)
+print(client_secret)
 def get_access_token(client_id, client_secret):
     auth_url = 'https://accounts.spotify.com/api/token'
     auth_response = requests.post(auth_url, {
