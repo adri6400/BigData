@@ -85,11 +85,11 @@ st.write('Plus de ', len(df) , 'musiques sur notre site')
 # st.image(image_path, caption='Ceci est un exemple d\'image', use_column_width=True)
 
 image_paths = [
-    "./aa.jpeg",  
-    "./aa.jpeg",  
-    "./aa.jpeg",  
-    "./aa.jpeg",  
-    "./aa.jpeg",  
+    "./img/aa.jpeg",  
+    "./img/aa.jpeg",  
+    "./img/aa.jpeg",  
+    "./img/aa.jpeg",  
+    "./img/aa.jpeg",  
 ]
 
 # Affichage des images dans des colonnes
