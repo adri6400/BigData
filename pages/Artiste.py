@@ -17,5 +17,16 @@ if st.button('Rechercher les informations de l\'artiste') :
         st.write(f"Popularité de l'artiste : {popularity}")
         st.write(f"Genre de l'artiste : {genre}")
         st.write(f"Nombres de Followers : {following}")
-        
+        html_code = f"""
+        <div style="display: flex; justify-content: space-around;">
+            <div>
+                <img src="{artiste_image_url}" style="border-radius: 50%; width: 250px; height: 250px;">
+                <p style="text-align: center;">1. <b>Ninho</b> de {name}</p>
+            </div>
+            
+        </div>
+        """
+
+# Utiliser Streamlit components pour intégrer du HTML
+        st.components.v1.html(html_code, height=350)
 #Récupération du dataframe 
