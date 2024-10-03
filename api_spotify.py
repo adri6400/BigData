@@ -1,5 +1,4 @@
-#client id : d93d4a8bdb184e898082ab907dc313b4
-#client secret : 1c72f524f0e24c2787c945e9c3f5df54
+
 
 import requests
 client_id = "d93d4a8bdb184e898082ab907dc313b4"
