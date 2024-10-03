@@ -77,6 +77,7 @@ def search_artist(artist_name, access_token):
     following = results['artists']['items'][0]['followers']['total']
     if artists and following :
         artist_id = artists[0]['id']
-        return artist_id, artists[0]['name'], artists[0]['popularity'], artists[0]['genres'], following
+        artist_image_url = results['images'][0]['url'] if results['images'] else None
+        return artist_id, artists[0]['name'], artists[0]['popularity'], artists[0]['genres'], following, artist_image_url
     return None, None, None, None
 

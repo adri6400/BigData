@@ -11,10 +11,11 @@ artist_name = st.text_input('Nom de l\'artiste')
 
 if st.button('Rechercher les informations de l\'artiste') :
     access_token = api_spotify.get_access_token(api_spotify.client_id, api_spotify.client_secret)
-    artist_id, name, popularity, genre, following = api_spotify.search_artist(artist_name, access_token) 
+    artist_id, name, popularity, genre, following, artiste_image_url = api_spotify.search_artist(artist_name, access_token) 
     if artist_id : 
         st.write(f"Non de l'artiste : {name}")
         st.write(f"Popularité de l'artiste : {popularity}")
         st.write(f"Genre de l'artiste : {genre}")
         st.write(f"Nombres de Followers : {following}")
+        
 #Récupération du dataframe 
