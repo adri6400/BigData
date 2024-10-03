@@ -17,6 +17,3 @@ st.write(df[['artistName', 'genre']].drop_duplicates())
 
 st.write("### Genres populaires")
 
-
-
-
