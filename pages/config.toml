@@ -1,0 +1,3 @@
+[browser]
+# Utiliser toute la largeur de la page
+set_page_config(layout="wide")
