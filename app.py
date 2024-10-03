@@ -12,7 +12,7 @@ st.set_page_config(layout="wide")
 custom_css = """
     <style>
     /* Changer la couleur de fond de la barre de navigation */
-    .css-18e3th9 {
+    .css-18e3th9 {  
         background-color: #4CAF50;  /* Couleur de fond du menu */
         color: red;  /* Couleur du texte */
     }
