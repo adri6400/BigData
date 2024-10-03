@@ -1,5 +1,5 @@
 
-import api_spotify
+import BigData.utils.api_spotify as api_spotify
 
 import streamlit as st
 import pandas as pd
