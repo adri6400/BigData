@@ -45,13 +45,12 @@ if '_id' in df.columns:
     df = df.drop('_id', axis=1)
     
     
-
+artist_name = st.text_input('Nom de l\'artiste')
+track_name = st.text_input('Titre de la chanson')
 
 # Filtrer le DataFrame en fonction des valeurs saisies
 
 
-<<<<<<< HEAD
-=======
 # Bouton pour rechercher la chanson sur Spotify
 if st.button('Rechercher dans spotify') : 
     access_token = api_spotify.get_access_token(api_spotify.client_id, api_spotify.client_secret)
@@ -65,7 +64,6 @@ if st.button('Rechercher dans spotify') :
         st.write(track_features)
     else:
         st.write("No track found matching the criteria.")
->>>>>>> 9e9e4f8d1401d28cba1be3713454517b58201606
 # Afficher le DataFrame filtré
 st.write(df)
 
