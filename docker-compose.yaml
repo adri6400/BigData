@@ -1,29 +1,21 @@
-version: '3'
+version: '3.8'
 
-services:
-  db:
-    image: mongo:latest
+services: 
+  mongo:
+    image: mongo
+    restart: always
     environment:
-      MONGO_USERNAME: stats_user
-      MONGO_PASSWORD: stats_password
-      MONGO_DATABASE: stats_db
+      MONGO_INITDB_ROOT_USERNAME: user_name
+      MONGO_INITDB_ROOT_PASSWORD: user_password
     ports:
-      - "27017:27017"
-    volumes:
-      - mongo_data:/data/db
+      - "27017:27017"  
+    volumes:  
+      - "./db:/data/db"
 
-  app:
-    build: .
-    environment:
-      DB_HOST: db
-      DB_USER: stats_user
-      DB_PASSWORD: stats_password
-      DB_NAME: stats_db
-      DB_PORT: 27017
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
-
-volumes:
-  mongo_data:
+  app: 
+    build: . 
+    restart: always  
+    ports: 
+      - "8501:8501" 
+    depends_on:  
+      - mongo  
