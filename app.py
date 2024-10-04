@@ -19,10 +19,7 @@ database_name = os.environ.get('DATABASE')
 collection_name = os.environ.get('COLLECTION')
 
 st.set_page_config(layout="wide")
-st.write(f"USER_NAME: {user_name}")
-st.write(f"USER_PASSWORD: {user_password}")
-st.write(f"DATABASE: {database_name}")
-st.write(f"COLLECTION: {collection_name}")
+
 
 st.title('App Musique')
 
