@@ -6,77 +6,87 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from pymongo import MongoClient
+from dotenv import load_dotenv
+import os
+
+
+# Charger le fichier .env
+load_dotenv()
+
+# Accéder aux variables d'environnement
+user_name = os.environ.get('user_name')
+user_password = os.environ.get('user_password')
+database_name = os.environ.get('DATABASE')
+collection_name = os.environ.get('COLLECTION')
 
 st.set_page_config(layout="wide")
-
-# CSS personnalisé pour styliser le menu
-custom_css = """  
-    <style>
-    /* Changer la couleur de fond de la barre de navigation */
-    .css-18e3th9 {  
-        background-color: #4CAF50;  /* Couleur de fond du menu */
-        color: red;  /* Couleur du texte */
-    }
-    
-    /* Changer la couleur du texte des boutons dans le menu */
-    .css-1q8dd3e a {
-        color: white !important;  /* Couleur du texte */
-    }
-    
-    /* Modifier les titres de la sidebar */
-    .css-1hynsf2 {
-        color: white;  /* Couleur des titres de la sidebar */
-    }
-
-    /* Changer la couleur du fond de la sidebar */
-    .css-1d391kg {
-        background-color: blue !important;  /* Couleur de fond de la sidebar */
-    }
-    </style>
-    """
-
-
-
-# Injecter le CSS dans l'application
-st.markdown(custom_css, unsafe_allow_html=True)
+st.write(f"USER_NAME: {user_name}")
+st.write(f"USER_PASSWORD: {user_password}")
+st.write(f"DATABASE: {database_name}")
+st.write(f"COLLECTION: {collection_name}")
 
 st.title('App Musique')
 
-# Chargement du fichier CSV avec des options supplémentaires
-try:
-    df = pd.read_csv('Spotify_Song_Attributes.csv')
-except pd.errors.ParserError as e:
-    st.error(f"Erreur lors de la lecture du fichier CSV : {e}")
-    df = pd.DataFrame()  # Créer un DataFrame vide en cas d'erreur
+#Affichage de la bdd
+# Connexion à MongoDB
+
+client = MongoClient(f'mongodb://{user_name}:{user_password}@mongo:27017/')
+
+
+db = client[database_name] 
+collection = db[collection_name]  
+
+data = list(collection.find())
+
+df = pd.DataFrame(data)
+
+if '_id' in df.columns:
+    df = df.drop('_id', axis=1)
+    
+    
+
 
 # Filtrer le DataFrame en fonction des valeurs saisies
 
 
+<<<<<<< HEAD
+=======
+# Bouton pour rechercher la chanson sur Spotify
+if st.button('Rechercher dans spotify') : 
+    access_token = api_spotify.get_access_token(api_spotify.client_id, api_spotify.client_secret)
+    track_id, found_track_name, found_artist_name, preview_url = api_spotify.search_track(track_name, artist_name, access_token)
+    if track_id:
+        st.write(f"Found track ID: {track_id}")
+        st.write(f"Track name: {found_track_name}")
+        st.write(f"Artist name: {found_artist_name}")
+        st.write(f"Preview URL: {preview_url}")
+        track_features = api_spotify.get_track_features(track_id, access_token)
+        st.write(track_features)
+    else:
+        st.write("No track found matching the criteria.")
+>>>>>>> 9e9e4f8d1401d28cba1be3713454517b58201606
 # Afficher le DataFrame filtré
 st.write(df)
-
 
 
 st.write('Plus de ', len(df) , 'musiques sur notre site')
 
 
-
-# image_path = "./aa.jpeg"  
-
 # # Afficher l'image
 # st.image(image_path, caption='Ceci est un exemple d\'image', use_column_width=True)
 
-image_paths = [
-    "./img/aa.jpeg",  
-    "./img/aa.jpeg",  
-    "./img/aa.jpeg",  
-    "./img/aa.jpeg",  
-    "./img/aa.jpeg",  
-]
+# image_paths = [
+#     "./img/aa.jpeg",  
+#     "./img/aa.jpeg",  
+#     "./img/aa.jpeg",  
+#     "./img/aa.jpeg",  
+#     "./img/aa.jpeg",  
+# ]
 
-# Affichage des images dans des colonnes
-cols = st.columns(len(image_paths))
+# # Affichage des images dans des colonnes
+# cols = st.columns(len(image_paths))
 
-# Afficher chaque image dans sa colonne
-for col, image_path in zip(cols, image_paths):
-    col.image(image_path, caption='Titre de l\'image', use_column_width=True)
+# # Afficher chaque image dans sa colonne
+# for col, image_path in zip(cols, image_paths):
+#     col.image(image_path, caption='Titre de l\'image', use_column_width=True)
