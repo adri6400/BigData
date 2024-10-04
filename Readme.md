@@ -19,3 +19,19 @@ pip install -r requirements.txt
 ``` 
 streamlit run app.py
 ```
+
+
+## Mettre les variables d'environnement comme ceci dans le fichier .env: 
+```
+CLIENT_ID
+CLIENT_SECRET
+user_name
+user_password
+DATABASE
+COLLECTION
+```
+
+## Lancer le docker : 
+```
+docker compose up --build
+```
