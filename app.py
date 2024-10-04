@@ -44,7 +44,7 @@ if '_id' in df.columns:
     
     
 
-
+ 
 # Champs de saisie pour le nom de l'artiste et le titre
 artist_name = st.text_input('Nom de l\'artiste')
 track_name = st.text_input('Titre de la chanson')
