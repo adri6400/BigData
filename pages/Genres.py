@@ -5,6 +5,7 @@ import numpy as np
 #Récupération du dataframe 
 df = pd.read_csv('Spotify_Song_Attributes.csv')
 
+#Afficher la liste des genres
 if df is not None:
     
     if 'genre' in df.columns:

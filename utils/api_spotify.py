@@ -62,10 +62,32 @@ def search_artist_image(artist_name, access_token):
         artist = results['artists']['items'][0]  
         artist_name = artist['name']
         artist_image_url = artist['images'][0]['url'] if artist['images'] else 'Aucune image trouvée'
-        return artist_name, artist_image_url
+        return artist_image_url
     
     return None, None
 
+
+def  search_playlist_genre(name_genre, access_token):
+    search_url = 'https://api.spotify.com/v1/search'
+    headers = {
+        'Authorization': f'Bearer {name_genre}'
+    }
+    query_params = {
+        'q': f'playlist:{name_genre}',
+        'type': 'playlist',
+        'limit': 1  
+    }   
+    
+    response = requests.get(search_url, headers=headers, params=query_params)
+    results = response.json()
+    
+    if results['artists']['items']:
+        artist = results['artists']['items'][0]  
+        artist_name = artist['name']
+        artist_image_url = artist['images'][0]['url'] if artist['images'] else 'Aucune image trouvée'
+        return artist_image_url
+    
+    return None, None
 
 
 def get_track_features(track_id, access_token):

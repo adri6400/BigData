@@ -8,20 +8,18 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
 
+st.set_page_config(layout="wide")
 
 # Charger le fichier .env
 load_dotenv()
 
-# Accéder aux variables d'environnement
+# Accéder à .env
 user_name = os.environ.get('user_name')
 user_password = os.environ.get('user_password')
-
-st.set_page_config(layout="wide")
 
 st.title('App Musique')
 
 #Affichage de la bdd
-# Connexion à MongoDB
 
 client = MongoClient(f'mongodb://{user_name}:{user_password}@localhost:27017/')
 
@@ -35,9 +33,6 @@ df = pd.DataFrame(data)
 if '_id' in df.columns:
     df = df.drop('_id', axis=1)
     
-    
-
-
 # Champs de saisie pour le nom de l'artiste et le titre
 artist_name = st.text_input('Nom de l\'artiste')
 track_name = st.text_input('Titre de la chanson')
