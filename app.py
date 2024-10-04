@@ -34,6 +34,8 @@ df = pd.DataFrame(data)
 
 if '_id' in df.columns:
     df = df.drop('_id', axis=1)
+    
+    
 
 
 # Champs de saisie pour le nom de l'artiste et le titre
