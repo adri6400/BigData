@@ -60,7 +60,30 @@ if track_id:
 else:
     print("No track found matching the criteria.")
 
+def search_artist_barre_recherche(artist_name, access_token):
+    search_url = 'https://api.spotify.com/v1/search'
+    headers = {'Authorization': f'Bearer {access_token}'}
+    query_params = {
+        'q': artist_name,
+        'type': 'artist',
+        'limit': 10  # Limite à 10 résultats pour obtenir une liste des artistes pertinents
+    }
+    response = requests.get(search_url, headers=headers, params=query_params)
+    results = response.json()
+    artists_info = []
 
+    # Parcourir chaque artiste trouvé et collecter les noms et genres
+    for artist in results['artists']['items']:
+        artist_info = {
+            'name': artist['name'],
+            'genres': artist['genres'],
+            'popularity': artist['popularity'],
+            'image_url': artist['images'][0]['url'] if artist['images'] else None  # Si des images sont disponibles, prendre la première
+        }
+        artists_info.append(artist_info)
+
+    return artists_info
+    
 def search_artist(artist_name, access_token):
     search_url = 'https://api.spotify.com/v1/search'
     headers = {
@@ -73,11 +96,14 @@ def search_artist(artist_name, access_token):
     }
     response = requests.get(search_url, headers=headers, params=query_params)
     results = response.json()
+    if results['artists']['items']:
+        artist = results['artists']['items'][0]  
+        artist_name = artist['name']
+        artist_image_url = artist['images'][0]['url'] if artist['images'] else 'Aucune image trouvée'
     artists = results['artists']['items']
     following = results['artists']['items'][0]['followers']['total']
     if artists and following :
         artist_id = artists[0]['id']
-        artist_image_url = results['images'][0]['url'] if results['images'] else None
-        return artist_id, artists[0]['name'], artists[0]['popularity'], artists[0]['genres'], following, artist_image_url
+        return artist_id, artist_name, artists[0]['popularity'], artists[0]['genres'], following, artist_image_url
     return None, None, None, None
 
