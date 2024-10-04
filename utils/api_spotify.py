@@ -83,6 +83,27 @@ def search_artist_barre_recherche(artist_name, access_token):
         artists_info.append(artist_info)
 
     return artists_info
+
+def search_artist_image(artist_name, access_token):
+    search_url = 'https://api.spotify.com/v1/search'
+    headers = {
+        'Authorization': f'Bearer {access_token}'
+    }
+    query_params = {
+        'q': f'artist:{artist_name}',
+        'type': 'artist',
+        'limit': 1  
+    }
+    response = requests.get(search_url, headers=headers, params=query_params)
+    results = response.json()
+    
+    if results['artists']['items']:
+        artist = results['artists']['items'][0]  
+        artist_name = artist['name']
+        artist_image_url = artist['images'][0]['url'] if artist['images'] else 'Aucune image trouvée'
+        return artist_image_url
+    
+    return None, None
     
 def search_artist(artist_name, access_token):
     search_url = 'https://api.spotify.com/v1/search'
