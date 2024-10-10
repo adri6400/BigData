@@ -1,7 +1,7 @@
 
 import utils.api_spotify as api_spotify
 
-
+from pymongo.errors import ConnectionFailure
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -28,7 +28,14 @@ st.title('App Musique')
 #Affichage de la bdd
 # Connexion à MongoDB
 
-client = MongoClient(f'mongodb://{user_name}:{user_password}@mongo:27017/')
+try: 
+    client = MongoClient(f'mongodb://{user_name}:{user_password}@mongo:27017/')
+    client.admin.command('ping')
+    st.success("Connexion à MongoDB réussie!") 
+except ConnectionFailure:
+    st.error("Échec de la connexion à MongoDB. Vérifiez vos paramètres de connexion.")
+except Exception as e:
+    st.error(f"Une erreur s'est produite: {str(e)}")
 
 
 db = client[database_name] 
