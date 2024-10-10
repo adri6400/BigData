@@ -5,20 +5,20 @@ services:
     image: mongo
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: user_name
-      MONGO_INITDB_ROOT_PASSWORD: user_password
+      MONGO_INITDB_ROOT_USERNAME: user_name  # Utilisateur MongoDB
+      MONGO_INITDB_ROOT_PASSWORD: user_password  # Mot de passe MongoDB
     ports:
-      - "27017:27017"
+      - "27017:27017"  # Expose MongoDB sur le port 27017
     volumes:
-      - "./db:/data/db"
+      - ./db:/data/db  # Volume pour persister les données MongoDB localement
 
   app:
-    build: .
+    build: .  # Construit ton application depuis le Dockerfile
     ports:
-      - "8501:8501"
+      - "8501:8501"  # Expose ton application sur le port 8501
     depends_on:
-      - mongo
+      - mongo  # L'application dépend de MongoDB
     environment:
-      - MONGODB_USERNAME=user_name
-      - MONGODB_PASSWORD=user_password
-      - MONGODB_HOSTNAME=mongo
+      - MONGODB_USERNAME=user_name  # Nom d'utilisateur MongoDB utilisé dans ton application
+      - MONGODB_PASSWORD=user_password  # Mot de passe MongoDB utilisé dans ton application
+      - MONGODB_HOSTNAME=mongo  # L'application doit se connecter à MongoDB via ce service
