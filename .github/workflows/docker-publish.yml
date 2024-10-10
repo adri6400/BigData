@@ -14,8 +14,8 @@ on:
 
 env:
   REGISTRY: ghcr.io                        # Utilise GitHub Container Registry
-  IMAGE_NAME: ${{ github.repository }}     # Nom de l'image basé sur le dépôt GitHub
-
+  IMAGE_NAME: adri6400/bigdata  
+  
 jobs:
   build:
     runs-on: ubuntu-latest                  # Exécute le job sur une machine virtuelle Ubuntu
