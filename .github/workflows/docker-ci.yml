@@ -1,0 +1,40 @@
+name: CI with Docker
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      mongo:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+        options: > 
+          --health-cmd "exit 0"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Compose
+        run: |
+          docker-compose -f docker-compose.yml up -d
+          docker ps
+
+      - name: Wait for MongoDB to be ready
+        run: sleep 20
+
+      - name: Run tests in Docker
+        run: |
+          docker-compose exec app sh -c "echo 'Tests en cours d'exécution...' && ./run-tests.sh"
+          docker-compose down
