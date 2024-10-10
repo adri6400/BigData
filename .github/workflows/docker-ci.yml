@@ -38,3 +38,4 @@ jobs:
         run: |
           docker-compose exec app sh -c "echo 'Tests en cours d'exécution...' && ./run-tests.sh"
           docker-compose down
+  
