@@ -23,7 +23,7 @@ jobs:
         run: |
           docker-compose up -d  # Démarre MongoDB et l'application en arrière-plan
           docker-compose ps     # Affiche les services en cours d'exécution
-
+  
       # Étape 4 : Attendre que MongoDB soit prêt
       - name: Wait for MongoDB
         run: |
