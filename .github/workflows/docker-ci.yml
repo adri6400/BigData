@@ -1,40 +1,25 @@
-name: CI with Docker
+name: CI/CD with Docker
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest  
-    services:
-      mongo:
-        image: mongo:latest
-        ports:
-          - 27017:27017
-        options: > 
-          --health-cmd "exit 0"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Docker Compose
-        run: |
-          docker-compose -f docker-compose.yml up -d
-          docker ps
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Wait for MongoDB to be ready
-        run: sleep 20
-
-      - name: Run tests in Docker
+      - name: Deploy Docker to local machine
         run: |
-          docker-compose exec app sh -c "echo 'Tests en cours d'exécution...' && ./run-tests.sh"
-          docker-compose down
+          ssh -o StrictHostKeyChecking=no user@ip_address 'cd /home/cytech/AA-ecole/ING3/BigData/BigData && git pull && docker-compose down && docker-compose up -d --build'
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
