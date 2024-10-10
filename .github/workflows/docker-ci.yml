@@ -7,7 +7,11 @@ on:
 
 jobs:
   build:
+<<<<<<< HEAD
     runs-on: ubuntu-latest
+=======
+    runs-on: ubuntu-latest 
+>>>>>>> 4e691d7d8dab3958a950c4cbfa3868b0f0ed04e2
 
     steps:
       - name: Checkout code
@@ -20,6 +24,10 @@ jobs:
 
       - name: Deploy Docker to local machine
         run: |
+<<<<<<< HEAD
           ssh -o StrictHostKeyChecking=no user@ip_address 'cd /home/cytech/AA-ecole/ING3/BigData/BigData && git pull origin main && docker-compose down && docker-compose up -d --build'
+=======
+          ssh -o StrictHostKeyChecking=no cytech@217.119.181.222 'cd /home/cytech/AA-ecole/ING3/BigData/BigData && git pull origin main && docker compose down && docker compose up -d --build'
+>>>>>>> 4e691d7d8dab3958a950c4cbfa3868b0f0ed04e2
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
