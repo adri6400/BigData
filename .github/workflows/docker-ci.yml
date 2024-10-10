@@ -1,0 +1,25 @@
+name: CI/CD with Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy Docker to local machine
+        run: |
+          ssh -o StrictHostKeyChecking=no cytech@192.168.144.149 'cd /home/cytech/AA-ecole/ING3/BigData/BigData && git pull origin main && docker-compose down && docker compose up -d --build'
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
