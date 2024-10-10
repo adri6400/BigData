@@ -15,7 +15,7 @@ on:
 env:
   REGISTRY: ghcr.io                        # Utilise GitHub Container Registry
   IMAGE_NAME: adri6400/bigdata  
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest                  # Exécute le job sur une machine virtuelle Ubuntu
@@ -74,3 +74,4 @@ jobs:
           TAGS: ${{ steps.meta.outputs.tags }}
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+ 
