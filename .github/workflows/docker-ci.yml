@@ -20,6 +20,6 @@ jobs:
 
       - name: Deploy Docker to local machine
         run: |
-          ssh -o StrictHostKeyChecking=no cytech@192.168.144.149 'cd /home/cytech/AA-ecole/ING3/BigData/BigData && git pull origin main && docker-compose down && docker compose up -d --build'
+          ssh -o StrictHostKeyChecking=no cytech@192.168.144.149 'cd /home/cytech/AA-ecole/ING3/BigData/BigData && git pull origin main && docker compose down && docker compose up -d --build'
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
