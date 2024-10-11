@@ -7,6 +7,16 @@ import matplotlib.pyplot as plt
 from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
+import pytest
+
+
+
+def test_user_name():
+    # Accéder à la variable d'environnement
+    user_name = os.getenv('user_name')
+    
+    # Vérifier que la variable user_name est bien égale à "user_name"
+    assert user_name == "user_name", f"Expected 'user_name', but got {user_name}"
 
 
 # Charger le fichier .env

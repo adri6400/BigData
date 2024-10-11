@@ -13,17 +13,20 @@ jobs:
       # Étape 1 : Cloner le dépôt
       - name: Checkout code
         uses: actions/checkout@v2
-        with :
-          clean : false  # Ne pas supprimer les fichiers existants
+        with:
+          clean: false  # Ne pas supprimer les fichiers existants
 
       # Étape 2 : Configurer Docker Buildx (optionnel si nécessaire)
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-       # Étape 3 : Construire et démarrer les services Docker
+      # Étape 3 : Construire et démarrer les services Docker
       - name: Start MongoDB and the app with Docker Compose
         run: |
-          docker compose up --build 
-  
- 
-      
+          docker compose up --build -d  # Démarre MongoDB et l'application en arrière-plan
+
+
+      # Étape 4 : Exécuter les tests avec pytest
+      - name: Run tests in Docker
+        run: |
+          docker-compose exec app pytest
