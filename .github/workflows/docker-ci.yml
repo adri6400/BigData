@@ -23,10 +23,5 @@ jobs:
         run: |
           docker compose up --build
   
-      # Étape 4 : Attendre que MongoDB soit prêt
-      - name: Wait for MongoDB
-        run: |
-          until docker exec mongodb_container mongo --eval "print(\"MongoDB is up\")"; do
-            echo "Waiting for MongoDB to start..."
-            sleep 5
-          done
+
+      
