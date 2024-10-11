@@ -14,7 +14,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Exposer le port sur lequel l'application sera accessible
-EXPOSE 8501
+EXPOSE 8501 
 
 # Commande pour démarrer l'application
 CMD ["streamlit", "run", "app.py"]
