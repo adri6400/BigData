@@ -10,7 +10,7 @@ import os
 import pytest
 
 
-
+ 
 def test_user_name():
     # Accéder à la variable d'environnement
     user_name = os.getenv('user_name')
