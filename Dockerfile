@@ -18,3 +18,4 @@ EXPOSE 8501
 
 # Commande pour démarrer l'application
 CMD ["streamlit", "run", "app.py"]
+ 
