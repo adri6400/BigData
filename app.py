@@ -34,7 +34,7 @@ collection = db[collection_name]
 
 data = list(collection.find())
 
-df = pd.DataFrame(data)
+df = pd.DataFrame(data) 
 
 if '_id' in df.columns:
     df = df.drop('_id', axis=1)
