@@ -23,7 +23,7 @@ jobs:
        # Étape 3 : Construire et démarrer les services Docker
       - name: Start MongoDB and the app with Docker Compose
         run: |
-          docker compose up --build
+          docker compose up --build 
   
  
       
